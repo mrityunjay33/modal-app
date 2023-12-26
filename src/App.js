@@ -2,50 +2,117 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const initialData = [
-    { date: "2022-09-01", views: 100, article: "Article 1" },
-    { date: "2023-09-01", views: 100, article: "Article 1" },
-    { date: "2023-09-02", views: 150, article: "Article 2" },
-    { date: "2023-09-02", views: 120, article: "Article 3" },
-    { date: "2020-09-03", views: 200, article: "Article 4" }
-  ];
+  const [showModal, setShowModal] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    phone: '',
+    dob: '',
+  });
 
-  const [tableData, setTableData] = useState(initialData);
+  const handleCloseModal = (e) => {
+    if (e.target.classList.contains('modal')) {
+      setShowModal(false);
+    }
+  };
 
-  const sortData = (key) => {
-    const sortedData = [...tableData].sort((a, b) => {
-      if (a[key] < b[key]) return 1;
-      if (a[key] > b[key]) return -1;
-      return 0;
+  const handleSubmit = () => {
+    const { username, email, phone, dob } = formData;
+
+    if (!email.includes('@')) {
+      alert('Invalid email. Please check your email address.');
+      return;
+    }
+
+    if (!/^\d{10}$/.test(phone)) {
+      alert('Invalid phone number. Please enter a 10-digit phone number.');
+      return;
+    }
+
+    const today = new Date();
+    const dobDate = new Date(dob);
+
+    if (dobDate > today) {
+      alert('Date of birth cannot be in the future.');
+      return;
+    }
+
+    // On successful submission, reset form data and close modal
+    setFormData({
+      username: '',
+      email: '',
+      phone: '',
+      dob: '',
     });
-    setTableData(sortedData);
+    setShowModal(false);
   };
 
   return (
     <div className="App">
-      <h1>Date and Views Table</h1>
-      <div className="buttons">
-        <button onClick={() => sortData('date')}>Sort by Date</button>
-        <button onClick={() => sortData('views')}>Sort by Views</button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Views</th>
-            <th>Article</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tableData.map((item, index) => (
-            <tr key={index}>
-              <td>{item.date}</td>
-              <td>{item.views}</td>
-              <td>{item.article}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <h1>User Details Modal</h1>
+      <button onClick={() => setShowModal(true)}>Open Form</button>
+
+      {showModal && (
+        <div className="modal" onClick={handleCloseModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <form>
+              <label htmlFor="username">Username:</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={formData.username}
+                onChange={(e) =>
+                  setFormData({ ...formData, username: e.target.value })
+                }
+                required
+              />
+
+              <label htmlFor="email">Email:</label>
+              <input
+                type="text"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                pattern=".+@.+" 
+                title={`Please include an '@' in the email address. '${formData.email} is missing an '@'`}
+                required
+              />
+
+              <label htmlFor="phone">Phone:</label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={(e) =>
+                  setFormData({ ...formData, phone: e.target.value })
+                }
+                required
+              />
+
+              <label htmlFor="dob">Date of Birth:</label>
+              <input
+                type="date"
+                id="dob"
+                name="dob"
+                value={formData.dob}
+                onChange={(e) =>
+                  setFormData({ ...formData, dob: e.target.value })
+                }
+                required
+              />
+
+              <button className="submit-button" onClick={handleSubmit}>
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
