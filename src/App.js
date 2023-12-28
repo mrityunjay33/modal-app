@@ -106,7 +106,7 @@ function App() {
                 required
               />
 
-              <button className="submit-button" >
+              <button type='submit' className="submit-button" >
                 Submit
               </button>
             </form>
