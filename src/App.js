@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -10,7 +10,24 @@ function App() {
     dob: '',
   });
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const openButton = document.getElementById('open-button');
+      if (showModal && event.target.closest('.modal') === null && event.target !== openButton) {
+        setShowModal(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [showModal]);
+
   const handleSubmit = (e) => {
+    e.preventDefault(); // Prevents default form submission behavior
+
     const { username, email, phone, dob } = formData;
 
     if (!email.includes('@')) {
@@ -44,7 +61,7 @@ function App() {
   return (
     <div className="App">
       <h1>User Details Modal</h1>
-      <button onClick={() => setShowModal(true)}>Open Form</button>
+      <button id='open-button' className='open-button' onClick={() => setShowModal(true)}>Open Form</button>
 
       {showModal && (
         <div className="modal" >
@@ -71,7 +88,7 @@ function App() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                pattern=".+@.+" 
+                pattern=".+@.+"
                 title={`Please include an '@' in the email address. '${formData.email} is missing an '@'`}
                 required
               />
@@ -99,9 +116,8 @@ function App() {
                 }
                 required
               />
-              {/* <input className="submit-button" type='submit' /> */}
 
-              <button type='submit' className="submit-button" >
+              <button type='submit' className="submit-button">
                 Submit
               </button>
             </form>
