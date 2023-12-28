@@ -10,16 +10,7 @@ function App() {
     dob: '',
   });
 
-  const handleCloseModal = (e) => {
-    // if (e.target.classList.contains('modal')) {
-    //   setShowModal(false);
-    // }
-    if (!e.target.closest('.modal-content')) {
-      setShowModal(false);
-    }
-  };
-
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
     const { username, email, phone, dob } = formData;
 
     if (!email.includes('@')) {
@@ -56,8 +47,8 @@ function App() {
       <button onClick={() => setShowModal(true)}>Open Form</button>
 
       {showModal && (
-        <div className="modal" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal" >
+          <div className="modal-content" >
             <form onSubmit={handleSubmit}>
               <label htmlFor="username">Username:</label>
               <input
@@ -108,11 +99,11 @@ function App() {
                 }
                 required
               />
-              <input className="submit-button" type='submit' />
+              {/* <input className="submit-button" type='submit' /> */}
 
-              {/* <button type='submit' className="submit-button" >
+              <button type='submit' className="submit-button" >
                 Submit
-              </button> */}
+              </button>
             </form>
           </div>
         </div>
