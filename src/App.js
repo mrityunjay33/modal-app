@@ -63,67 +63,68 @@ function App() {
       <h1>User Details Modal</h1>
       <button id='open-button' className='open-button' onClick={() => setShowModal(true)}>Open Form</button>
 
-      {showModal && (
-        <div className="modal" >
-          <div className="modal-content" >
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="username">Username:</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={(e) =>
-                  setFormData({ ...formData, username: e.target.value })
-                }
-                required
-              />
+        <dialog open={showModal} >
+          <div className="modal" >
+            <div className="modal-content" >
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  value={formData.username}
+                  onChange={(e) =>
+                    setFormData({ ...formData, username: e.target.value })
+                  }
+                  required
+                />
 
-              <label htmlFor="email">Email:</label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
-                pattern=".+@.+"
-                title={`Please include an '@' in the email address. '${formData.email} is missing an '@'`}
-                required
-              />
+                <label htmlFor="email">Email:</label>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
+                  pattern=".+@.+"
+                  title={`Please include an '@' in the email address. '${formData.email} is missing an '@'`}
+                  required
+                />
 
-              <label htmlFor="phone">Phone:</label>
-              <input
-                type="text"
-                id="phone"
-                name="phone"
-                value={formData.phone}
-                onChange={(e) =>
-                  setFormData({ ...formData, phone: e.target.value })
-                }
-                required
-              />
+                <label htmlFor="phone">Phone:</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
+                  required
+                />
 
-              <label htmlFor="dob">Date of Birth:</label>
-              <input
-                type="date"
-                id="dob"
-                name="dob"
-                value={formData.dob}
-                onChange={(e) =>
-                  setFormData({ ...formData, dob: e.target.value })
-                }
-                required
-              />
+                <label htmlFor="dob">Date of Birth:</label>
+                <input
+                  type="date"
+                  id="dob"
+                  name="dob"
+                  value={formData.dob}
+                  onChange={(e) =>
+                    setFormData({ ...formData, dob: e.target.value })
+                  }
+                  required
+                />
 
-              <button type='submit' className="submit-button">
-                Submit
-              </button>
-            </form>
+                <button type='submit' className="submit-button">
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-      )}
+        </dialog>
+
     </div>
   );
 }
