@@ -11,7 +11,10 @@ function App() {
   });
 
   const handleCloseModal = (e) => {
-    if (e.target.classList.contains('modal')) {
+    // if (e.target.classList.contains('modal')) {
+    //   setShowModal(false);
+    // }
+    if (!e.target.closest('.modal-content')) {
       setShowModal(false);
     }
   };
@@ -105,10 +108,11 @@ function App() {
                 }
                 required
               />
+              <input className="submit-button" type='submit' />
 
-              <button type='submit' className="submit-button" >
+              {/* <button type='submit' className="submit-button" >
                 Submit
-              </button>
+              </button> */}
             </form>
           </div>
         </div>
