@@ -55,7 +55,7 @@ function App() {
       {showModal && (
         <div className="modal" onClick={handleCloseModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <form>
+            <form onSubmit={handleSubmit}>
               <label htmlFor="username">Username:</label>
               <input
                 type="text"
@@ -106,7 +106,7 @@ function App() {
                 required
               />
 
-              <button className="submit-button" onClick={handleSubmit}>
+              <button className="submit-button" >
                 Submit
               </button>
             </form>
