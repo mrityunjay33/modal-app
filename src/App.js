@@ -33,7 +33,7 @@ function App() {
     const dobDate = new Date(dob);
 
     if (dobDate >= today) {
-      alert('Invalid Date of birth. Date must be in the past.');
+      alert('Invalid date of birth. Date must be in the past.');
       return;
     }
 
