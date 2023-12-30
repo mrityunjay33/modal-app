@@ -1,5 +1,39 @@
-/* App.css */
+.App{
+    text-align: center;
+}
+.open-button, .submit-button{
+    background-color: blue;
+    border-radius: 6px;
+    color: white;
+    height: 2rem;
+    width: 6rem;
+}
+dialog{
+    margin-top: 70px;
+    border-radius: 6px;
+    background-color: rgb(250, 247, 247);
+}
+.modal{
+    height: 500px;
+    width: 800px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 10px;
+}
 
-td{
-    padding: 10px;
+input{
+    width: 40vw;
+    height: 2rem;
+    border: 1px;
+    border-radius: 4px;
+}
+label{
+    font-weight: 500;
+}
+.submit-button{
+    margin: 40px auto;
 }

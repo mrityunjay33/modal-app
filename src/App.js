@@ -26,7 +26,7 @@ function App() {
   }, [showModal]);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents default form submission behavior
+    e.preventDefault();
 
     const { username, email, phone, dob } = formData;
 
@@ -66,6 +66,7 @@ function App() {
         <dialog open={showModal} >
           <div className="modal" >
             <div className="modal-content" >
+              <h2>Fill Details</h2>
               <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username:</label>
                 <input
@@ -116,7 +117,6 @@ function App() {
                   }
                   required
                 />
-
                 <button type='submit' className="submit-button">
                   Submit
                 </button>
