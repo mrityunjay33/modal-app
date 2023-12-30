@@ -13,7 +13,7 @@ dialog{
     border-radius: 6px;
     background-color: rgb(250, 247, 247);
 }
-.modal{
+.modal-content{
     height: 500px;
     width: 800px;
 }
