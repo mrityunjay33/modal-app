@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       <h1>User Details Modal</h1>
       <button id='open-button' className='submit-button' onClick={() => setShowModal(true)}>Open Form</button>
-      <div className="test"></div>
+      <button className="test"></button>
       {showModal &&
         <dialog open={showModal} >
           <div className="modal" >
