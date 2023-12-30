@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       <h1>User Details Modal</h1>
       <button id='open-button' className='open-button' onClick={() => setShowModal(true)}>Open Form</button>
-
+      {showModal &&
         <dialog open={showModal} >
           <div className="modal" >
             <div className="modal-content" >
@@ -124,7 +124,7 @@ function App() {
             </div>
           </div>
         </dialog>
-
+      }
     </div>
   );
 }
